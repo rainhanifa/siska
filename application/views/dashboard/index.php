@@ -38,8 +38,8 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Saldo Modal</p>
-                                            <?php echo rupiah($saldo_modal); ?>
+                                            <p>Pendapatan Publik</p>
+                                            <?php echo rupiah($pendapatan_publik); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -53,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-lg-4 col-sm-12">
                         <div class="card">
@@ -73,7 +74,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> August 2017
+                                        <i class="ti-reload"></i> Total = <?php echo rupiah($outcome)." - ".rupiah($previous_operasional); ?> (sisa bulan lalu)
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +132,35 @@
                     </div>
                 </div>
 
-
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-wallet"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Saldo Income Bulan Ini</p>
+                                            <?php echo rupiah($saldo_modal); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-calendar"></i> August 2017
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-12">
                         <div class="card">
@@ -170,7 +199,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Outcome Modal</p>
-                                            <?php echo rupiah($total_modal); ?>
+                                            <?php echo rupiah($outcome_modal); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -283,6 +312,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
+                                            $dibayarkan = 0;
                                             foreach($member as $member) { ?>
                                         <tr>
                                             <td><?php echo $member['name']?></td>
@@ -290,13 +320,21 @@
                                             <td><?php echo 0; ?></td>
                                             <td><?php echo getUtangMember($member['id'])?></td>
                                             <td><?php echo getPiutangMember($member['id'])?></td>
-                                            <td><?php echo $total_bayar = rupiah($gaji + getPiutangMember($member['id']))?></td>
+                                            <td><?php echo rupiah($total_bayar = $gaji + getPiutangMember($member['id']))?></td>
                                         </tr>
-                                        <?php   } ?>
+                                        <?php   
+                                            $dibayarkan = $dibayarkan + $total_bayar;
+                                        } ?>
                                     </tbody>
                                 </table>
-
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-credit-card"></i> Total Gaji Seluruh Member <?php rupiah($dibayarkan)?>
+                                    </div>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

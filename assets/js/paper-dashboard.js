@@ -30,6 +30,8 @@ $(document).ready(function(){
     //  Activate the tooltips
     $('[rel="tooltip"]').tooltip();
 
+    //  Enable Modal Bootstrap
+    $('.modal').appendTo('body');
 });
 
 // activate collapse right menu when the windows is resized

@@ -18,26 +18,50 @@
             <ul class="nav">
                 <li <?php echo ($controller == 'dashboard' ? 'class="active"' : '')?>>
                     <a href="<?php echo base_url('dashboard')?>">
-                        <i class="ti-panel"></i>
+                        <i class="ti-stats-up"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li <?php echo ($controller == 'income' ? 'class="active"' : '')?>>
                     <a href="<?php echo base_url('income')?>">
-                        <i class="ti-view-list-alt"></i>
+                        <i class="ti-envelope"></i>
                         <p>Income</p>
                     </a>
                 </li>
                 <li <?php echo ($controller == 'outcome' ? 'class="active"' : '')?>>
                     <a href="<?php echo base_url('outcome')?>">
-                        <i class="ti-view-list-alt"></i>
+                        <i class="ti-shopping-cart"></i>
                         <p>Outcome</p>
+                    </a>
+                </li>
+                <li <?php echo ($controller == 'capital' ? 'class="active"' : '')?>>
+                    <a href="<?php echo base_url('capital')?>">
+                        <i class="ti-wallet"></i>
+                        <p>Modal</p>
+                    </a>
+                </li>
+                <li <?php echo ($controller == 'deviden' ? 'class="active"' : '')?>>
+                    <a href="<?php echo base_url('deviden')?>">
+                        <i class="ti-star"></i>
+                        <p>Deviden</p>
+                    </a>
+                </li>
+                <li <?php echo ($controller == 'member' ? 'class="active"' : '')?>>
+                    <a href="<?php echo base_url('member')?>">
+                        <i class="ti-user"></i>
+                        <p>Member</p>
                     </a>
                 </li>
                 <li <?php echo ($controller == 'category' ? 'class="active"' : '')?>>
                     <a href="<?php echo base_url('category')?>">
-                        <i class="ti-view-grid"></i>
+                        <i class="ti-wand"></i>
                         <p>Category</p>
+                    </a>
+                </li>
+                <li <?php echo ($controller == 'preferences' ? 'class="active"' : '')?>>
+                    <a href="<?php echo base_url('preferences')?>">
+                        <i class="ti-panel"></i>
+                        <p>Preferences</p>
                     </a>
                 </li>
                 <li>
@@ -80,7 +104,7 @@
                     </button>
                     <a class="navbar-brand" href="#"> <?php echo $title ?></a>
                 </div>
-                <!--
+                
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -112,7 +136,7 @@
                         </li>
                     </ul>
                 </div>
-                -->
+                
             </div>
         </nav>
 
