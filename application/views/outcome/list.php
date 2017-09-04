@@ -5,7 +5,7 @@
                         <div class="card">
                             <div class="header">
                                 <a href="<?php echo base_url('outcome/add')?>" class="btn btn-warning">New Outcome</a>
-                                <h4 class="pull-right">Rp <?php echo $grand_total;?></h4>
+                                <h4 class="pull-right"><?php echo rupiah($grand_total);?></h4>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped" id="table-transaction">

@@ -1,8 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function getDendaMember($id_member){
-    $CI =& get_instance();
-}
 
 
 function getUtangMember($id_member){
@@ -18,6 +15,14 @@ function getPiutangMember($id_member){
 
     $where  =   array("member_id" => $id_member);
     $total  =   $CI->db->select("SUM(total) AS total")->from("transaction_outcome")->where($where)->get()->row()->total;
+    return $total;
+}
+
+function getDendaMember($id_member){
+    $CI =& get_instance();
+
+    $where  =   array("member_id" => $id_member);
+    $total  =   $CI->db->select("SUM(total) AS total")->from("transaction_fine")->where($where)->get()->row()->total;
     return $total;
 }
 

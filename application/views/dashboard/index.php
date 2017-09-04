@@ -303,12 +303,12 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>Nama</th>
-                                        <th>Gaji Bersih</th>
-                                        <th>Denda</th>
-                                        <th>Utang</th>
-                                        <th>Piutang</th>
-                                        <th>Gaji Dibayarkan</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Gaji Bersih</th>
+                                        <th class="text-center">Denda</th>
+                                        <th class="text-center">Utang</th>
+                                        <th class="text-center">Piutang</th>
+                                        <th class="text-center">Gaji Dibayarkan</th>
                                     </thead>
                                     <tbody>
                                         <?php
@@ -316,23 +316,23 @@
                                             foreach($member as $member) { ?>
                                         <tr>
                                             <td><?php echo $member['name']?></td>
-                                            <td><?php echo $gaji; ?></td>
-                                            <td><?php echo 0; ?></td>
-                                            <td><?php echo getUtangMember($member['id'])?></td>
-                                            <td><?php echo getPiutangMember($member['id'])?></td>
-                                            <td><?php echo rupiah($total_bayar = $gaji + getPiutangMember($member['id']))?></td>
+                                            <td class="text-right"><?php echo rupiah($gaji); ?></td>
+                                            <td class="text-right"><?php echo rupiah(getDendaMember($member['id'])); ?></td>
+                                            <td class="text-right"><?php echo rupiah(getUtangMember($member['id']))?></td>
+                                            <td class="text-right"><?php echo rupiah(getPiutangMember($member['id']))?></td>
+                                            <td class="text-right"><?php echo rupiah($total_bayar = $gaji + getPiutangMember($member['id']) - getUtangMember($member['id']) - getDendaMember($member['id']))?></td>
                                         </tr>
                                         <?php   
                                             $dibayarkan = $dibayarkan + $total_bayar;
                                         } ?>
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-right">Total Gaji Dibayarkan</td>
+                                            <td class="text-right"><?php echo rupiah($dibayarkan)?></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-credit-card"></i> Total Gaji Seluruh Member <?php rupiah($dibayarkan)?>
-                                    </div>
-                                </div>
                             </div>
                             
                         </div>
