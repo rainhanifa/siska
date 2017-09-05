@@ -5,6 +5,7 @@
                         <div class="card">
                             <div class="header">
                                 <a href="<?php echo base_url('income/add')?>" class="btn btn-warning">New Income</a>
+                                <a href="<?php echo base_url('income/export_pdf')?>" class="btn btn-warning">Export</a>
                                 <h4 class="pull-right"><?php echo rupiah($grand_total);?></h4>
                             </div>
                             <div class="content table-responsive table-full-width">

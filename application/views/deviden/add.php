@@ -1,3 +1,4 @@
+
         <div class="content">
             <div class="container-fluid">
                     <div class="col-lg-12 col-md-12">
@@ -10,7 +11,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Date</label>
-                                                <input class="datepicker form-control border-input" type="text" name="date" placeholder="01-09-2017" data-date-format="dd-mm-yyyy"/>
+                                                <input type="text" name="date" class="form-control border-input date-picker" placeholder="Date Transaction" value="01-09-2017">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -67,17 +68,6 @@
             </div>
         </div>
 
-     
-    <link href="<?php echo base_url('assets/')?>css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="<?php echo base_url('assets/')?>js/bootstrap-datepicker.js"></script>
 
-
-    <script type="text/javascript">
-        $(function(){
-            $('.datepicker').datepicker({
-                 weekStart:1,
-                 color: 'yellow'
-             });
-        });
-        
-    </script>
+    <link href="<?php echo base_url('assets/')?>css/datepicker.css" rel="stylesheet">
+    <script src="<?php echo base_url('assets/')?>js/bootstrap-datepicker.js" type="text/javascript"></script>

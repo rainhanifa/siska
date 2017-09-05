@@ -57,6 +57,24 @@
 									);
 			$this->db->insert('transaction_outcome', $transaction_data);
 
+			//MODAL
+			if($category == 2){
+				$transaction_data	=	array("date"	=> $date,
+											"category_id" => 0,
+											"member_id" => $member,
+											"total"	=>	$total,
+											"description" => $description
+									);
+				$this->db->insert('transaction_capital', $transaction_data);
+
+				//UPDATE MODAL
+				$capital_balance	=	$this->db->select('balance')->from('capital')->get()->row()->balance;
+				$new_balance 		=	$capital_balance - $total;
+				$transaction_data   =	array("date" => date("Y-m-d"),
+											"balance" => $new_balance );
+				$this->db->update($capital, $transaction_data);
+			}
+
 			redirect("outcome");
 		}
 
@@ -71,23 +89,24 @@
 									->get()->result_array();
 			$data['grand_total']	= $this->db->select('sum(total) as total')->from('transaction_outcome')->get()->row()->total;
 
-			$this->load->view('outcome/list',$data);
+			$this->load->view('outcome/report',$data);
 	 		
 	 		//set source
-	 		$html 	 = $this->load->view('outcome/list',$data, TRUE);
+	 		$html 	 = $this->load->view('outcome/report',$data, TRUE);
 
 	 		//var_dump($source);exit;
-	        $pdfFilePath = "Illiyin-Outcome-Report.pdf";
+	        $pdfFilePath = "Illiyin-Outcome-Report-".date("M-Y").".pdf";
 	        //lokasi file css yang akan di load
 	        $stylesheet = file_get_contents(FCPATH.'assets/css/bootstrap.min.css');
 	 
+
 	        $pdf = $this->m_pdf->load();
-	 
-	        $pdf->AddPage('L');
+	 		
+	        $pdf->AddPage('P'); //L to landscape
 	        $pdf->WriteHTML($stylesheet, 1);
 	        $pdf->WriteHTML($html);
 	        
-	        $pdf->Output($pdfFilePath, "D");
+	        $pdf->Output($pdfFilePath, "I"); //F to save as file, D to download, I view in browser
 	        exit();
 	      }
 	}

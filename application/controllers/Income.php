@@ -45,7 +45,7 @@
 			$total	 	=	$this->input->post('total');
 			$description=	$this->input->post('description');
 
-			//jika outcome operasional proyek
+			//jika income operasional proyek
 			if($category == 0){
 				$total = 0 - $total;
 			}
@@ -59,4 +59,36 @@
 
 			redirect("income");
 		}
+		
+		public function export_pdf(){
+
+			$data['transactions'] = $this->db->select('transaction_income.*, member.name as member_name,
+										category.name as category_name')
+									->from('transaction_income')
+									->join('category', "category.id = transaction_income.category_id")
+									->join('member', "member.id = transaction_income.member_id")
+									->order_by('transaction_income.date')
+									->get()->result_array();
+			$data['grand_total']	= $this->db->select('sum(total) as total')->from('transaction_income')->get()->row()->total;
+
+			$this->load->view('income/report',$data);
+	 		
+	 		//set source
+	 		$html 	 = $this->load->view('income/report',$data, TRUE);
+
+	 		//var_dump($source);exit;
+	        $pdfFilePath = "Illiyin-Income-Report-".date("M-Y").".pdf";
+	        //lokasi file css yang akan di load
+	        $stylesheet = file_get_contents(FCPATH.'assets/css/bootstrap.min.css');
+	 
+
+	        $pdf = $this->m_pdf->load();
+	 		
+	        $pdf->AddPage('P'); //L to landscape
+	        $pdf->WriteHTML($stylesheet, 1);
+	        $pdf->WriteHTML($html);
+	        
+	        $pdf->Output($pdfFilePath, "I"); //F to save as file, D to download, I view in browser
+	        exit();
+	      }
 }

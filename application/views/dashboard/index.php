@@ -13,7 +13,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Pendapatan Bersih</p>
+                                            <p>Marketing Revenue</p>
                                             <?php echo rupiah($total_revenue); ?>
                                         </div>
                                     </div>
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Pendapatan Publik</p>
+                                            <p>Pendapatan Bersih</p>
                                             <?php echo rupiah($pendapatan_publik); ?>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> August 2017
+                                        <i class="ti-calendar"></i> Marketing Revenue - Operasional Proyek
                                     </div>
                                 </div>
                             </div>
