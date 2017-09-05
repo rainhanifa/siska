@@ -22,17 +22,19 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li <?php echo ($controller == 'income' ? 'class="active"' : '')?>>
-                    <a href="<?php echo base_url('income')?>">
-                        <i class="ti-envelope"></i>
-                        <p>Income</p>
-                    </a>
-                </li>
-                <li <?php echo ($controller == 'outcome' ? 'class="active"' : '')?>>
-                    <a href="<?php echo base_url('outcome')?>">
+
+                <li <?php echo ($controller == 'income' || $controller == 'outcome') ? 'class="active"' : ''?>>
+                    <a href="#transaction_submenu" data-toggle="collapse">
                         <i class="ti-shopping-cart"></i>
-                        <p>Outcome</p>
+                        <p>Transaction <span class="pull-right"><b class="caret"></b></span></p>
                     </a>
+                    <div class="collapse" id="transaction_submenu">
+                        <ul class="nav submenu">
+                            <li><a href="<?php echo base_url('outcome')?>"><p><i class="ti-shift-right"></i> Outcome</p></a></li>
+                            <li><a href="<?php echo base_url('income')?>"><p><i class="ti-shift-left"></i> Income</p></a></li>
+                            <li><a href="<?php echo base_url('fine')?>"><p><i class="ti-receipt"></i> Denda</p></a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li <?php echo ($controller == 'capital' ? 'class="active"' : '')?>>
                     <a href="<?php echo base_url('capital')?>">
@@ -52,41 +54,33 @@
                         <p>Member</p>
                     </a>
                 </li>
-                <li <?php echo ($controller == 'category' ? 'class="active"' : '')?>>
-                    <a href="<?php echo base_url('category')?>">
-                        <i class="ti-wand"></i>
-                        <p>Category</p>
-                    </a>
-                </li>
-                <li <?php echo ($controller == 'preferences' ? 'class="active"' : '')?>>
-                    <a href="<?php echo base_url('preferences')?>">
+
+                <li <?php echo ($controller == 'category' || $controller == 'preferences') ? 'class="active"' : ''?>>
+                    <a href="#setting_submenu" data-toggle="collapse">
                         <i class="ti-panel"></i>
-                        <p>Preferences</p>
+                        <p>Setting <span class="pull-right"><b class="caret"></b></span></p>
                     </a>
+                    <div class="collapse" id="setting_submenu">
+                        <ul class="nav submenu">
+                            <li><a href="<?php echo base_url('preferences')?>"><p><i class="ti-key"></i> Range</p></a></li>
+                            <li><a href="<?php echo base_url('category')?>"><p><i class="ti-wand"></i> Category</p></a></li>
+                            <li><a href="<?php echo base_url('category')?>"><p><i class="ti-id-badge"></i> User</p></a></li>
+                        </ul>
+                    </div>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="ti-text"></i>
-                        <p>Typography</p>
+
+                <li <?php echo ($controller == 'category' || $controller == 'preferences') ? 'class="active"' : ''?>>
+                    <a href="#report_submenu" data-toggle="collapse">
+                        <i class="ti-files"></i>
+                        <p>Report <span class="pull-right"><b class="caret"></b></span></p>
                     </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="ti-map"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
-                    </a>
+                    <div class="collapse" id="report_submenu">
+                        <ul class="nav submenu">
+                            <li><a href="<?php echo base_url('preferences')?>"><p><i class="ti-file"></i> Closing</p></a></li>
+                            <li><a href="<?php echo base_url('category')?>"><p><i class="ti-file"></i> Monthly Report</p></a></li>
+                            <li><a href="<?php echo base_url('category')?>"><p><i class="ti-file"></i> Yearly Report</p></a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
     	</div>
