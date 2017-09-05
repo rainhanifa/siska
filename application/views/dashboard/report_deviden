@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link href="<?php echo base_url('assets/')?>css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url('assets/')?>css/paper-dashboard.css" rel="stylesheet"/>
+        <link href="<?php echo base_url('assets/')?>css/custom.css" rel="stylesheet" />
+    </head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <div class="header">
+                                <h4>Gaji Member</h4>
+                                Total Gaji Bersih Member <?php echo rupiah($total_gaji)?> <p class="category">Sedekah <?php echo rupiah($sedekah)?></p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Gaji Bersih</th>
+                                        <th class="text-center">Denda</th>
+                                        <th class="text-center">Utang</th>
+                                        <th class="text-center">Piutang</th>
+                                        <th class="text-center">Gaji Dibayarkan</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $dibayarkan = 0;
+                                            foreach($member as $member) { ?>
+                                        <tr>
+                                            <td><?php echo $member['name']?></td>
+                                            <td class="text-right"><?php echo rupiah($gaji); ?></td>
+                                            <td class="text-right"><?php echo rupiah(getDendaMember($member['id'])); ?></td>
+                                            <td class="text-right"><?php echo rupiah(getUtangMember($member['id']))?></td>
+                                            <td class="text-right"><?php echo rupiah(getPiutangMember($member['id']))?></td>
+                                            <td class="text-right"><?php echo rupiah($total_bayar = $gaji + getPiutangMember($member['id']) - getUtangMember($member['id']) - getDendaMember($member['id']))?></td>
+                                        </tr>
+                                        <?php   
+                                            $dibayarkan = $dibayarkan + $total_bayar;
+                                        } ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-right">Total Gaji Dibayarkan</td>
+                                            <td class="text-right"><?php echo rupiah($dibayarkan)?></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div>
+</body>
+
+    <script src="<?php echo base_url('assets/')?>js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/')?>js/bootstrap.min.js" type="text/javascript"></script>
+</html>

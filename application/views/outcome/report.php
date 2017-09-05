@@ -18,31 +18,61 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-bordered">
                                     <tr class="table-info">
-                                        <td width="5%" class="text-center"><h5>#</h5></td>
                                         <td width="10%" class="text-center"><h5>DATE</h5></td>
                                         <td width="30%" class="text-center"><h5>DESCRIPTION</h5></td>
                                         <td width="20%" class="text-center"><h5>CATEGORY</h5></td>
                                         <td width="15%" class="text-center"><h5>PIC</h5></td>
-                                        <td width="10%" class="text-center"><h5>TOTAL</h5></td>
+                                        <td width="20%" class="text-center"><h5>TOTAL</h5></td>
                                     </tr>
                                     <tbody>
                                         <?php
-                                            $no = 1;
                                             foreach($transactions as $transaction) { ?>
                                         <tr>
-                                            <td><?php echo $no;?></td>
-                                            <td><?php echo date("d-m", strtotime($transaction['date']))?></td>
+                                            <td class="text-center"><?php echo date("d/m", strtotime($transaction['date']))?></td>
                                             <td><?php echo $transaction['description']?></td>
-                                            <td><?php echo $transaction['category_name']?></td>
-                                            <td><?php $name=explode(" ",$transaction['member_name']); echo $name[0]." ".$name[1]?></td>
+                                            <td class="text-center"><?php echo $transaction['category_name']?></td>
+                                            <td class="text-center"><?php $name=explode(" ",$transaction['member_name']); echo $name[0]." ".$name[1]?></td>
                                             <td class="text-right"><?php echo rupiah($transaction['total'])?></td>
                                         </tr>
-                                        <?php $no++;
-                                                } ?>
+                                        <?php } ?>
                                     </tbody>
                                     <tr>
-                                        <td colspan="5" class="text-right"><h5>Total Outcome</h5></td>
-                                        <td class="text-right"><h><?php echo rupiah($grand_total)?></h5></td>
+                                        <td colspan="4" class="text-right"><h5>Outcome</h5></td>
+                                        <td class="text-right"><h5><?php echo rupiah($grand_total)?></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><h5>Sisa Operasional Bulan Lalu</h5></td>
+                                        <td class="text-right"><h5><?php echo rupiah(928900)?></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><h5>Total Outcome</h5></td>
+                                        <td class="text-right"><h5><?php echo rupiah($grand_total - 928900)?></h5></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <h3>Outcome Modal </h3>
+                                <table class="table table-bordered">
+                                    <tr class="table-info">
+                                        <td width="10%" class="text-center"><h5>DATE</h5></td>
+                                        <td width="30%" class="text-center"><h5>DESCRIPTION</h5></td>
+                                        <td width="15%" class="text-center"><h5>PIC</h5></td>
+                                        <td width="15%" class="text-center"><h5>TOTAL</h5></td>
+                                    </tr>
+                                    <tbody>
+                                        <?php
+                                            foreach($transactions2 as $transaction2) { ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo date("d/m", strtotime($transaction2['date']))?></td>
+                                            <td><?php echo $transaction2['description']?></td>
+                                            <td class="text-center"><?php $name=explode(" ",$transaction2['member_name']); echo $name[0]." ".$name[1]?></td>
+                                            <td class="text-right"><?php echo rupiah($transaction2['total'])?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tr class="table-success">
+                                        <td colspan="3" class="text-right"><h5>Total Outcome Modal</h5></td>
+                                        <td class="text-right"><h5><?php echo rupiah($grand_total_2)?></h5></td>
                                     </tr>
                                 </table>
                             </div>

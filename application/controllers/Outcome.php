@@ -72,7 +72,7 @@
 				$new_balance 		=	$capital_balance - $total;
 				$transaction_data   =	array("date" => date("Y-m-d"),
 											"balance" => $new_balance );
-				$this->db->update($capital, $transaction_data);
+				$this->db->update("capital", $transaction_data);
 			}
 
 			redirect("outcome");
@@ -85,9 +85,24 @@
 									->from('transaction_outcome')
 									->join('category', "category.id = transaction_outcome.category_id")
 									->join('member', "member.id = transaction_outcome.member_id")
+									->where("transaction_outcome.category_id = 1 OR transaction_outcome.category_id = 3 ")
 									->order_by('transaction_outcome.date')
 									->get()->result_array();
-			$data['grand_total']	= $this->db->select('sum(total) as total')->from('transaction_outcome')->get()->row()->total;
+			$data['grand_total']	= $this->db->select('sum(total) as total')->from('transaction_outcome')
+										->where("transaction_outcome.category_id = 1 OR transaction_outcome.category_id = 3 ")
+										->get()->row()->total;
+
+			$data['transactions2'] = $this->db->select('transaction_outcome.*, member.name as member_name,
+										category.name as category_name')
+									->from('transaction_outcome')
+									->join('category', "category.id = transaction_outcome.category_id")
+									->join('member', "member.id = transaction_outcome.member_id")
+									->where("transaction_outcome.category_id = 2 ")
+									->order_by('transaction_outcome.date')
+									->get()->result_array();
+			$data['grand_total_2']	= $this->db->select('sum(total) as total')->from('transaction_outcome')
+										->where("transaction_outcome.category_id = 2 ")
+										->get()->row()->total;
 
 			$this->load->view('outcome/report',$data);
 	 		
