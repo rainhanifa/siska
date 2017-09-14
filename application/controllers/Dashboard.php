@@ -38,11 +38,11 @@
 
 
 			// MODAL
-			$data['previous_modal']		= 3735945 ;
+			$data['previous_modal']		= 5035945 ;
 			$data['income_modal']		= 4 / 9 * $data['bagi_hasil'] ;
 			$data['outcome_modal']  	= $this->db->select('sum(total) as total')->from('transaction_outcome')->where(array('category_id' => 2))
 											->get()->row()->total;
-			$data['saldo_modal']		= $data['income_modal'] - $data['outcome_modal'];
+			$data['saldo_modal']		= $data['income_modal'] - $data['outcome_modal'] + $data['previous_modal'];
 
 			// DEVIDEN
 			$data['income_deviden']		= 5 / 9 * $data['bagi_hasil'] ;
@@ -140,14 +140,14 @@
 	        $pdf->WriteHTML($html);
 
 
-			// BAGI HASIL
-			$data['bagi_hasil']		    = $income - $data['total_gaji'] - $data['sedekah'] - $outcome;
+			// BAGI HASIL 								gajipokok			sedekah			outcome 		 outcome_modal
+			$data['bagi_hasil']		    = $income - $data['total_gaji'] - $data['sedekah'] - $outcome - $data['grand_total_2'];
 
 
 			// MODAL
-			$data['previous_modal']		= 3735945 ;
+			$data['previous_modal']		= 5035945 ;
 			$data['income_modal']		= 4 / 9 * $data['bagi_hasil'] ;
-			$data['saldo_modal']		= $data['income_modal'] - $data['grand_total_2'];
+			$data['saldo_modal']		= $data['income_modal'] - $data['grand_total_2'] + $data['previous_modal'];
 
 
 			$data['transactions'] = $this->db->select('transaction_capital.*, member.name as member_name')

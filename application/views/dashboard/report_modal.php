@@ -45,12 +45,19 @@
                                             <td></td>
                                             <td class="text-right"><?php echo rupiah($income_modal)?></td>
                                         </tr>
+                                        <tr>
+                                            <td><?php echo date("d/m")?></td>
+                                            <td>Total Denda Agustus</td>
+                                            <td>Dimas</td>
+                                            <td></td>
+                                            <td class="text-right"><?php echo rupiah(1468000)?></td>
+                                        </tr>
                                     </tbody>
                                     <tr>
 
                                         <h5>
                                         <td colspan="4" class="text-right"><h5>Saldo Modal</h5></td>
-                                        <td class="text-right"><h5><?php echo rupiah($saldo_modal)?></h5></td>
+                                        <td class="text-right"><h5><?php echo rupiah($saldo_modal + 1468000)?></h5></td>
                                         </h5>
                                     </tr>
                                 </table>
@@ -106,3 +113,4 @@
     <script src="<?php echo base_url('assets/')?>js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="<?php echo base_url('assets/')?>js/bootstrap.min.js" type="text/javascript"></script>
 </html>
+<!-- 8327600 -->
